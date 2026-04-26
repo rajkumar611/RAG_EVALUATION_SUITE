@@ -21,7 +21,8 @@ python main.py                    # serves on http://localhost:8000
 app.py          ← FastAPI app; mounts both routers; serves index.html at /
 rag/routes.py   ← 5 RAG strategies + /upload
 lc/routes.py    ← 10 LangChain concept demos
-index.html      ← entire SPA (single file, ~170 KB)
+index.html      ← entire SPA (single file, ~175 KB)
+extracted.js    ← JS extracted from index.html (reference artifact, not loaded by the app)
 ```
 
 ### RAG module (`rag/routes.py`)
@@ -34,11 +35,15 @@ Global in-memory state holds the uploaded document corpus — **reset on every s
 |---|---|
 | `POST /rag/naive` | Embed → vector search → generate |
 | `POST /rag/advanced` | Query rewrite → hybrid search → RRF → LLM re-rank → generate |
-| `POST /rag/agentic` | Tool-calling agent that searches iteratively (up to 5 turns) |
+| `POST /rag/agentic` | Tool-calling agent that searches iteratively (up to 2 rounds, `MAX_SEARCH_ROUNDS = 2`) |
 | `POST /rag/hybrid` | Dense (FAISS cosine) + sparse (TF-IDF BM25) fused via RRF |
 | `POST /rag/graph` | Seed retrieval + 2-hop BFS on a sequential graph → re-score |
 
-Shared utilities in the same file: `vsearch` (dense), `bsearch` (TF-IDF), `rrf` (Reciprocal Rank Fusion), `chunk_text`, `llm`.
+Shared utilities in the same file: `vsearch` (dense), `bsearch` (TF-IDF), `rrf` (Reciprocal Rank Fusion), `chunk_text`, `llm`, `rebuild_indexes`, `no_docs_response`, `ctx_prompt`.
+
+Global state variables: `DOCS` (chunks), `DOC_EMBS` (numpy embeddings), `TFIDF_MAT` (sparse matrix), `G` (NetworkX sequential graph), `embedder` (`all-MiniLM-L6-v2`, 384-dim, loaded at startup), `tfidf` (TfidfVectorizer).
+
+Upload limits: max 300 chunks, max chunk size 400 chars.
 
 ### LangChain module (`lc/routes.py`)
 
@@ -67,3 +72,6 @@ All imports are deferred (inside each route function) — this keeps startup fas
 - The RAG module and LangChain module use **different Claude models** — don't conflate them.
 - The LangChain fixed vectorstore (`_lc_vectorstore`) contains only 7 hardcoded AI/ML facts; it is not the uploaded document store.
 - `index.html` is a single-file SPA — all JS, CSS, and HTML in one file. Edit it directly.
+- `app.py` enables CORS with wildcard (`allow_origins=["*"]`) — fine for local dev, not for production.
+- The agentic RAG tool (`search_knowledge_base`) accepts `top_k` (default 3, max 5); the agent runs at most 2 search rounds.
+- LangChain agent tools: `calculator`, `get_exchange_rate`, `get_country_info`. LangChain tools endpoint tools: `calculator`, `get_weather`, `word_count`.
