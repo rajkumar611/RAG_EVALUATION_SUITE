@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this project is
 
-**AI Learning Hub** — a FastAPI web app demonstrating 5 RAG strategies, 10 LangChain orchestration patterns, and LLM-based RAG evaluation. A single `frontend/index.html` SPA calls backend endpoints. No database, no auth.
+**RAG Evaluation Suite** — a FastAPI web app demonstrating 5 RAG strategies, 10 LangChain orchestration patterns, and LLM-based RAG evaluation. A single `frontend/index.html` SPA calls backend endpoints. No database, no auth.
 
 ## Running the app
 

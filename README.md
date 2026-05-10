@@ -1,4 +1,4 @@
-# AI Learning Hub — RAG + LangChain Production Patterns
+# RAG Evaluation Suite
 
 An interactive FastAPI application demonstrating **5 RAG retrieval strategies**, **10 LangChain orchestration patterns**, and **LLM-based RAG evaluation** — built to production-grade standards.
 
