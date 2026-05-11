@@ -1,6 +1,6 @@
 """
 RAG Evaluation Suite — startup
-Run: python main.py   then open http://localhost:8000
+Run: python main.py   then open http://localhost:8080
 """
 import os
 import sys
