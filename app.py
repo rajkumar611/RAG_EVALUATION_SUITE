@@ -1,5 +1,5 @@
 """
-AI Learning Hub — unified FastAPI app
+RAG Evaluation Suite — unified FastAPI app
 Run via: python main.py
 """
 import logging
@@ -18,7 +18,7 @@ logging.basicConfig(
 # Enable LangSmith tracing when API key is present
 if os.getenv("LANGCHAIN_API_KEY"):
     os.environ.setdefault("LANGCHAIN_TRACING_V2", "true")
-    os.environ.setdefault("LANGCHAIN_PROJECT", "ai-learning-hub")
+    os.environ.setdefault("LANGCHAIN_PROJECT", "rag-evaluation-suite")
 
 from src.config import settings
 from src.rag.routes import router as rag_router, DOCS
@@ -26,7 +26,7 @@ from src.langchain_orchestration.routes import router as lc_router, LC_SESSIONS
 
 _START_TIME = time.time()
 
-app = FastAPI(title="AI Learning Hub")
+app = FastAPI(title="RAG Evaluation Suite")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 app.include_router(rag_router)
