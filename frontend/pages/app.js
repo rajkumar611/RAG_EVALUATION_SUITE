@@ -703,7 +703,7 @@ const _lcRunners = {
     const data = await lcPost('/langchain/chaining', {text});
     const colors = ['var(--blue)', 'var(--purple)', 'var(--green)'];
     document.getElementById('lc-right').innerHTML = data.steps.map((s, i) =>
-      lcCard(s.label, `<div style="font-size:13px;line-height:1.7;color:var(--text)">${esc(s.output)}</div>`, colors[i])
+      lcCard(s.label, `<div style="font-size:14px;line-height:1.7;color:var(--text)">${esc(s.output)}</div>`, colors[i])
     ).join('');
   },
 
@@ -716,7 +716,7 @@ const _lcRunners = {
       ${lcCard('Retrieved Chunks (FAISS top-2)', data.chunks.map((c,i)=>`
         <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;gap:10px">
           <div style="min-width:24px;height:24px;background:var(--surface);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--muted);flex-shrink:0">${i+1}</div>
-          <div style="font-size:13px;color:var(--text)">${esc(c)}</div>
+          <div style="font-size:14px;color:var(--text)">${esc(c)}</div>
         </div>`).join(''))}
       ${lcCard('Answer', `<div style="font-size:14px;line-height:1.8;color:var(--text)">${esc(data.answer)}</div>`, 'var(--blue)')}
     `;
@@ -826,8 +826,8 @@ const _lcRunners = {
     if (!topic) throw new Error('Enter a topic.');
     const data = await lcPost('/langchain/multiagent', {topic});
     document.getElementById('lc-right').innerHTML = `
-      ${lcCard('Research Agent — bullet facts', `<div style="font-size:13px;line-height:1.9;color:var(--text);white-space:pre-wrap">${esc(data.research)}</div>`, 'var(--blue)')}
-      ${lcCard('Writer Agent — blog post', `<div style="font-size:13px;line-height:1.9;color:var(--text)">${esc(data.blog)}</div>`, 'var(--green)')}
+      ${lcCard('Research Agent — bullet facts', `<div style="font-size:14px;line-height:1.9;color:var(--text);white-space:pre-wrap">${esc(data.research)}</div>`, 'var(--blue)')}
+      ${lcCard('Writer Agent — blog post', `<div style="font-size:14px;line-height:1.9;color:var(--text)">${esc(data.blog)}</div>`, 'var(--green)')}
     `;
   },
 
@@ -2141,8 +2141,8 @@ async function advancedUploadFile(input) {
     if (r.ok) {
       statusEl.style.color = 'var(--green)';
       statusEl.textContent = `✓ ${file.name} — ${d.chunks} chunks indexed`;
-      document.getElementById('uploadStatus').textContent = `✓ ${file.name} — ${d.chunks} chunks`;
-      document.getElementById('uploadStatus').className = 'upload-status ok';
+      const sharedStatus = document.getElementById('uploadStatus');
+      if (sharedStatus) { sharedStatus.textContent = `✓ ${file.name} — ${d.chunks} chunks`; sharedStatus.className = 'upload-status ok'; }
     } else {
       statusEl.style.color = 'var(--red)';
       statusEl.textContent = d.detail || 'Upload failed';
@@ -2192,8 +2192,8 @@ async function naiveUploadFile(input) {
     if (r.ok) {
       statusEl.style.color = 'var(--green)';
       statusEl.textContent = `✓ ${file.name} — ${d.chunks} chunks indexed`;
-      document.getElementById('uploadStatus').textContent = `✓ ${file.name} — ${d.chunks} chunks`;
-      document.getElementById('uploadStatus').className = 'upload-status ok';
+      const sharedStatus = document.getElementById('uploadStatus');
+      if (sharedStatus) { sharedStatus.textContent = `✓ ${file.name} — ${d.chunks} chunks`; sharedStatus.className = 'upload-status ok'; }
     } else {
       statusEl.style.color = 'var(--red)';
       statusEl.textContent = d.detail || 'Upload failed';

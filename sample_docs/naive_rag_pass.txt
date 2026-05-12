@@ -1,0 +1,31 @@
+ACME CORP — ANNUAL DEPARTMENT BUDGET SUMMARY
+============================================
+
+This document provides a consolidated view of ACME Corp's departmental budgets and headcounts for the current fiscal year. All figures are approved and final.
+
+DEPARTMENT BUDGET AND HEADCOUNT OVERVIEW
+-----------------------------------------
+Department          | Annual Budget (USD) | Employees | Cost per Employee (USD)
+--------------------|---------------------|-----------|------------------------
+Engineering         | $4,200,000          | 42        | $100,000
+Marketing           | $1,800,000          | 20        | $90,000
+Sales               | $2,400,000          | 30        | $80,000
+Human Resources     | $600,000            | 8         | $75,000
+Finance             | $900,000            | 10        | $90,000
+--------------------|---------------------|-----------|------------------------
+TOTAL               | $9,900,000          | 110       | $90,000 (avg)
+
+KEY OBSERVATIONS
+----------------
+Engineering holds the largest share of the total budget at $4.2M and also has the highest cost per employee at $100,000. This reflects the competitive salaries and tooling costs associated with technical roles.
+
+Marketing and Finance share the same cost-per-employee figure of $90,000, though Marketing's overall budget is twice as large due to its higher headcount.
+
+Sales has the lowest cost per employee at $80,000, partially due to a variable commission structure where a portion of compensation is tied to performance rather than fixed salary.
+
+Human Resources is the smallest department by both budget and headcount.
+
+TOTAL COMPANY BUDGET: $9,900,000
+TOTAL EMPLOYEES: 110
+AVERAGE COST PER EMPLOYEE: $90,000
+HIGHEST COST-PER-EMPLOYEE DEPARTMENT: Engineering ($100,000)

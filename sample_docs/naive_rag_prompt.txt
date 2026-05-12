@@ -1,0 +1,15 @@
+What is the total budget allocated across all departments, and which department has the highest cost per employee?
+
+---
+
+HOW TO USE THIS PROMPT
+-----------------------
+Use this exact question with both naive_rag_pass.txt and naive_rag_fail.txt to compare Naive RAG behaviour.
+
+Upload naive_rag_pass.txt first and ask the question.
+The answer should be complete and accurate because all budget and headcount data sits together in one section — Naive RAG retrieves the right chunk on the first try.
+
+Then upload naive_rag_fail.txt and ask the same question.
+The answer will likely be incomplete or incorrect. Budgets are in Section 4, headcounts are in Section 7, and department names are introduced in Section 1. These three pieces of information are spread far apart across the document. Naive RAG's top-K retrieval will surface only one or two of those sections, making it impossible to correctly calculate cost per employee for all departments.
+
+This demonstrates Naive RAG's core limitation: it retrieves the most similar chunks in isolation with no ability to reason across distant parts of a document.
