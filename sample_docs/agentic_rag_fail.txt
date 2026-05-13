@@ -1,0 +1,58 @@
+VANTAGE SYSTEMS — ANNUAL CLIENT SERVICE REPORT
+===============================================
+
+EXECUTIVE SUMMARY
+------------------
+This report covers client account activity, platform performance, and service delivery outcomes for the full fiscal year. It is prepared by the Client Operations team and reviewed by Legal and Finance. Four separate service-level events occurred across different tiers and quarters during the year.
+
+Q1 PLATFORM REVIEW — ENTERPRISE TIER
+--------------------------------------
+Both Enterprise Tier accounts — Pinnacle Bank and Stratus Energy — were reviewed in January. Service performance across the quarter was satisfactory. Infrastructure uptime for Enterprise Tier met the 99.95% monthly target in all three months. No escalations were raised.
+
+A scheduled capacity review in February confirmed that Pinnacle Bank's storage allocation was approaching 80% utilisation. A capacity expansion was approved and completed in March with no service interruption.
+
+Q1 NETWORK INCIDENT — STANDARD TIER
+--------------------------------------
+On 9 March, a misconfigured routing table update caused a 3-hour 14-minute connectivity outage for Standard Tier clients. The incident ran from 11:04 to 14:18 UTC and was caused by a typo in an automation script during a routine network maintenance window.
+
+Clients affected: Bluewave Retail and Summit Advisory, both enrolled on the Standard Tier.
+
+Under the Standard Tier SLA, a continuous outage exceeding 2 hours triggers a service credit of 10% on the affected month's invoice. The March incident exceeded this threshold. A 10% credit was applied to the April invoices for both Bluewave Retail and Summit Advisory.
+
+Q2 SECURITY AND COMPLIANCE REVIEW
+------------------------------------
+A penetration test was conducted in May against Enterprise Tier infrastructure. Two medium-severity vulnerabilities were identified. Both were patched within the 48-hour window required by the Enterprise Tier SLA. No breach of the SLA remediation clause occurred. Pinnacle Bank's security team confirmed sign-off on both remediations.
+
+Platform version 6.1 was released in June with no unplanned downtime. The release improved average read latency by 18% for Premium and Enterprise Tier customers. All clients were notified in advance.
+
+Q2 STORAGE DISRUPTION — PREMIUM TIER (MINOR)
+----------------------------------------------
+On 17 June, a misconfigured storage volume snapshot job caused intermittent write failures for Premium Tier clients over a 2-hour 41-minute window from 19:22 to 22:03 UTC. Read access was unaffected.
+
+Clients affected: Orion Financial Services, Kestrel Media Group, Hartwell Logistics, and Pacific Rim Biologics — all enrolled on the Premium Tier.
+
+The duration of 2 hours 41 minutes falls within the Severity 2 classification (outage between 1 and 4 hours). Under the Premium Tier SLA, a Severity 2 event entitles affected clients to a billing adjustment of 10% on the affected month's invoice. Credits were applied to July invoices for all four Premium Tier clients.
+
+Q3 STORAGE OUTAGE — PREMIUM TIER (MAJOR)
+------------------------------------------
+On 14 September, a firmware defect caused a 6-hour 22-minute interruption of Premium Tier storage access from 02:17 to 08:39 UTC. Read and write operations were suspended for the full duration. All four Premium Tier clients were affected.
+
+The incident was classified Severity 1 (outage exceeding 4 hours). The Severity 1 classification triggers a service credit entitlement of 20% of the September invoice for all affected Premium Tier clients. Credits are pending issuance in the October billing cycle.
+
+Q3 ISO RECERTIFICATION — ALL TIERS
+-------------------------------------
+Annual ISO 27001 recertification was completed in August. The audit covered infrastructure across all three service tiers. No major findings were raised. Certification was renewed on schedule. All clients were notified of successful recertification via the service bulletin issued on 29 August.
+
+Q4 CONNECTIVITY INCIDENT — ENTERPRISE TIER
+--------------------------------------------
+On 11 November, a BGP routing error caused a 52-minute interruption of Enterprise Tier connectivity. Only Pinnacle Bank was affected; Stratus Energy operates on a separate network path and remained uninterrupted.
+
+Under the Enterprise Tier SLA, a continuous outage exceeding 30 minutes triggers an account credit of 5% on the affected month's invoice. The November incident exceeded this threshold. A 5% account credit was applied to Pinnacle Bank's December invoice.
+
+Q4 YEAR-END ACCOUNT REVIEWS
+------------------------------
+Year-end reviews were completed for all client accounts across all tiers. Renewal negotiations are progressing for the following year. No new escalations were raised in Q4.
+
+PLATFORM INVESTMENT — UPCOMING
+--------------------------------
+Infrastructure investment planned for the next fiscal year includes a full replacement of the Premium Tier storage controller fleet, automated firmware regression testing before all production deployments, and a new customer notification portal for real-time incident updates. These investments are a direct response to the firmware-related incidents experienced in Q2 and Q3.

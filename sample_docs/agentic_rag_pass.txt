@@ -1,0 +1,50 @@
+VANTAGE SYSTEMS — POST-INCIDENT REVIEW: SEPTEMBER STORAGE OUTAGE
+=================================================================
+
+INCIDENT SUMMARY
+-----------------
+On 14 September, Vantage Systems experienced an unplanned service disruption in its managed storage platform. The outage affected Premium Tier storage exclusively and lasted 6 hours 22 minutes, from 02:17 to 08:39 UTC. During this window, Premium Tier customers were unable to perform read or write operations. No data was permanently lost; all data was fully recovered following service restoration.
+
+The incident was declared a Severity 1 event at 02:45 UTC by the on-call engineering lead. The incident commander engaged the storage engineering team, network operations, and the vendor support escalation line simultaneously.
+
+ROOT CAUSE AND TECHNICAL DETAILS
+---------------------------------
+Engineering root cause analysis identified a race condition in storage controller firmware version 4.2.1, introduced during the August maintenance window. The defect caused the controller's failover signal to be misinterpreted as a split-brain condition, preventing the standby controller from assuming primary status. The standby system remained in a wait state for the full 6-hour 22-minute duration of the outage.
+
+Remediation required a manual override to force standby controller promotion, followed by emergency installation of firmware version 4.2.2 supplied by the vendor. Post-incident stress testing confirmed the race condition was fully resolved in the new firmware build.
+
+AFFECTED TIER AND CUSTOMER ACCOUNTS
+-------------------------------------
+The outage was isolated to the Premium Tier storage service. Standard Tier and Enterprise Tier storage services operated without interruption throughout the incident. Premium Tier is the mid-range service tier, offering guaranteed low-latency access, enhanced redundancy, and priority support response times.
+
+As of September, the following four customers are enrolled on the Premium Tier:
+
+  - Orion Financial Services
+  - Kestrel Media Group
+  - Hartwell Logistics
+  - Pacific Rim Biologics
+
+All four customers were affected for the full duration of the outage. Notifications were sent to each customer's designated technical contact at 03:10 UTC confirming the incident and estimated resolution window.
+
+SLA TERMS AND CREDIT ENTITLEMENT
+----------------------------------
+Under the Vantage Systems Master Service Agreement, Premium Tier storage carries a guaranteed uptime commitment of 99.9% per calendar month. The SLA classifies service events by severity:
+
+  Severity 2 — continuous outage between 1 and 4 hours: 10% credit on the monthly invoice
+  Severity 1 — continuous outage exceeding 4 hours: 20% credit on the monthly invoice
+
+The September incident lasted 6 hours 22 minutes, which meets the Severity 1 classification threshold. Under the SLA terms, all four affected Premium Tier customers are automatically entitled to a service credit of 20% of their September storage invoice. No claim submission is required from customers; Vantage Systems initiates the credit process upon confirming the Severity 1 classification. Credits will be applied to October invoices.
+
+CORRECTIVE ACTIONS
+-------------------
+The following remediation actions were completed in the weeks following the incident:
+
+  - Firmware version 4.2.2 deployed to all active storage controllers (completed 16 September)
+  - Vendor firmware validation process updated to require regression testing against failover scenarios before deployment to production (effective October maintenance cycle)
+  - Automated alerting threshold for Premium Tier storage latency reduced from 15 minutes to 3 minutes
+  - Standby controller promotion added to monthly failover drill schedule
+
+INCIDENT STATUS: Closed — Severity 1 classification confirmed
+AFFECTED TIER: Premium Tier only
+OUTAGE DURATION: 6 hours 22 minutes
+SLA CREDIT TRIGGERED: 20% of September invoice for all four Premium Tier customers

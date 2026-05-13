@@ -1,0 +1,44 @@
+Which customers are entitled to an SLA credit for the September outage, and what percentage credit will they receive?
+
+---
+
+HOW TO USE THIS PROMPT
+-----------------------
+Use this exact question with both agentic_rag_pass.txt and agentic_rag_fail.txt to compare Agentic RAG behaviour.
+
+
+SCENARIO A — PASS (agentic_rag_pass.txt)
+-----------------------------------------
+Upload agentic_rag_pass.txt and ask the question.
+
+The answer should be complete and accurate. Watch the reasoning steps panel — you will see the agent make two distinct tool calls with different queries.
+
+Round 1: The agent searches for something like "September outage SLA credit". It finds that the outage lasted 6 hours 22 minutes, that Premium Tier was the affected tier, and that the Severity 1 threshold is triggered by outages exceeding 4 hours. The agent now knows the answer to "what percentage?" (20%) but not yet "which customers?" because the customer list is in a separate section of the document using different vocabulary.
+
+Round 2: The agent uses "Premium Tier" — a term it learned from Round 1 — to construct a new, targeted query: "Premium Tier customers enrolled". This retrieves the customer list: Orion Financial Services, Kestrel Media Group, Hartwell Logistics, and Pacific Rim Biologics.
+
+The agent then synthesises both rounds into a complete answer: all four Premium Tier customers are entitled to a 20% credit on their September invoice.
+
+This is Agentic RAG's core strength. The two pieces of information — credit percentage and customer list — are in sections that share almost no vocabulary. A single-shot strategy (Naive or Hybrid) would retrieve one or the other but rarely both in the same top-K result set. Only an agent that can ask a follow-up question based on what it just learned can reliably assemble the full answer.
+
+
+SCENARIO B — FAIL / INCORRECT (agentic_rag_fail.txt)
+------------------------------------------------------
+Upload agentic_rag_fail.txt and ask the same question.
+
+The answer will likely be wrong. The document is deliberately structured so that the two pieces of information the agent needs — the credit percentage and the customer names — sit in different sections describing different incidents.
+
+Round 1: The agent searches "September outage SLA credit" and retrieves the Q3 section. This section correctly states Severity 1 and 20% credit — but it does not name the customers. It only says "all four Premium Tier clients were affected."
+
+Round 2: The agent now needs to find who the Premium Tier clients are. It searches something like "Premium Tier customers". The closest matching section is the Q2 June incident, which explicitly names all four clients — Orion Financial Services, Kestrel Media Group, Hartwell Logistics, and Pacific Rim Biologics — but in the context of a different event that carried a 10% billing adjustment.
+
+The agent now has the credit percentage (20%) from one section and the customer names from a different section describing a different incident. It may report the correct names but the wrong credit percentage (10% from June), or it may conflate the two incidents entirely and produce a mixed answer. Either way, the response is incorrect despite all the relevant information being present in the document.
+
+The failure here is structural, not a matter of query wording. In the pass document, customer names and SLA terms are co-located in clearly separated sections of a single incident. In the fail document, the customer names only appear alongside a different credit percentage from a different month. The agent has no way to resolve this ambiguity within two search rounds.
+
+
+WHAT THIS DEMONSTRATES ABOUT AGENTIC RAG
+-----------------------------------------
+Agentic RAG excels at multi-hop questions — where the answer to Part A reveals the exact term or entity needed to search for Part B. No fixed retrieval pipeline can replicate this because the second query is dynamically constructed from the first result.
+
+Its limitation is not about document length or chunk count. It is about search precision under ambiguity. When a document contains multiple semantically similar events, the agent must issue precise, targeted queries to avoid retrieving and conflating unrelated results. If the agent's query is too broad, or if it stops after one round because the first result looks sufficient, the final answer can be incorrect even though the correct information is present in the document.

@@ -76,6 +76,27 @@
       </p>
     </div>
 
+    <!-- Vector DB indexing note -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;margin-bottom:40px">
+      <div style="font-size:17px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:14px">How Vector Databases Handle Search Behind the Scenes</div>
+      <p style="font-size:16px;color:var(--muted);line-height:1.85;margin:0 0 16px">
+        Once your document chunks are converted into vectors and stored, the vector database does not just sit and wait. It automatically builds internal <strong style="color:var(--text)">indexes</strong> — data structures that make similarity search fast even across millions of vectors. Two of the most common are:
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+        <div style="display:flex;align-items:flex-start;gap:12px">
+          <span style="background:#1e3a5f;color:var(--blue);border-radius:5px;font-size:12px;font-weight:700;padding:3px 10px;white-space:nowrap;margin-top:2px">HNSW</span>
+          <span style="font-size:15px;color:var(--muted);line-height:1.7"><strong style="color:var(--text)">Hierarchical Navigable Small World</strong> — builds a layered graph of vectors so a search can jump straight to the nearest neighbors without scanning everything.</span>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px">
+          <span style="background:#1e3a5f;color:var(--blue);border-radius:5px;font-size:12px;font-weight:700;padding:3px 10px;white-space:nowrap;margin-top:2px">IVF</span>
+          <span style="font-size:15px;color:var(--muted);line-height:1.7"><strong style="color:var(--text)">Inverted File Index</strong> — groups similar vectors into clusters so a search only looks inside the most relevant clusters instead of comparing every single vector.</span>
+        </div>
+      </div>
+      <p style="font-size:16px;color:var(--muted);line-height:1.85;margin:0">
+        Your RAG pipeline never manages any of this directly. <strong style="color:var(--text)">Indexing is handled entirely by the vector database in the background</strong> — the pipeline simply stores vectors and queries them.
+      </p>
+    </div>
+
     <!-- Nav buttons -->
     <div style="display:flex;gap:12px;flex-wrap:wrap;padding-top:4px;border-top:1px solid var(--border);">
       <button onclick="showNaiveRAG()" style="display:inline-flex;align-items:center;gap:8px;background:var(--blue);border:none;border-radius:8px;color:#fff;font:600 15px inherit;padding:10px 20px;cursor:pointer;transition:opacity .15s;margin-top:20px" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
