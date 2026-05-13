@@ -14,7 +14,7 @@ const _pageCache = {};
 async function navigate(page, tocId) {
   const content = document.getElementById('content');
   if (!_pageCache[page]) {
-    const r = await fetch(`/pages/${page}.html`);
+    const r = await fetch(`/pages/${page}.html`, { cache: 'no-cache' });
     _pageCache[page] = await r.text();
   }
   content.innerHTML = _pageCache[page];
