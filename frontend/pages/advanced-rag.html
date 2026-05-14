@@ -26,8 +26,8 @@
         <div style="background:var(--bg);border:1px solid var(--amber);color:var(--amber);border-radius:6px;padding:7px 14px;font-size:13px;font-weight:600">Metadata Enrichment</div>
         <span style="color:var(--muted);font-size:13px">→</span>
         <div style="display:flex;flex-direction:column;gap:6px">
-          <div style="background:var(--bg);border:1px solid var(--blue);color:var(--blue);border-radius:6px;padding:5px 12px;font-size:13px;font-weight:600">Vector DB</div>
-          <div style="background:var(--bg);border:1px solid var(--amber);color:var(--amber);border-radius:6px;padding:5px 12px;font-size:13px;font-weight:600">Keyword Index</div>
+          <div style="background:var(--bg);border:1px solid var(--blue);color:var(--blue);border-radius:6px;padding:5px 12px;font-size:13px;font-weight:600">Vector Index (Dense)</div>
+          <div style="background:var(--bg);border:1px solid var(--amber);color:var(--amber);border-radius:6px;padding:5px 12px;font-size:13px;font-weight:600">Keyword Index (Sparse)</div>
         </div>
       </div>
 
@@ -103,7 +103,7 @@
         <!-- Step 2 -->
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px">
           <div style="font-size:13px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Step 2 — Metadata Enrichment &amp; Dual Storage</div>
-          <div style="font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:10px">Every chunk is tagged with structured metadata at ingestion time. This metadata powers filtering, ranking boosts, and source traceability. Each chunk is then stored in <strong style="color:var(--text)">two completely separate systems</strong> — each optimised for a different type of search.</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:10px">Every chunk is tagged with structured metadata at ingestion time. This metadata powers filtering, ranking boosts, and source traceability. Each chunk is then stored in two completely separate systems — a <strong style="color:#3b82f6">Vector Index (Dense)</strong> for semantic similarity search and a <strong style="color:var(--amber)">Keyword Index (Sparse)</strong> for exact keyword matching.</div>
           <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-size:13px;font-family:monospace;color:var(--muted);line-height:1.9;margin-bottom:12px">
             <span style="color:var(--green);font-weight:700">Chunk metadata example:</span><br>
             {<br>
@@ -116,7 +116,7 @@
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
             <div style="background:#1e3a5f33;border:1px solid #3b82f644;border-radius:8px;padding:12px 14px">
-              <div style="font-size:13px;font-weight:700;color:#3b82f6;margin-bottom:8px">Vector Database</div>
+              <div style="font-size:13px;font-weight:700;color:#3b82f6;margin-bottom:8px">Vector Index (Dense)</div>
               <div style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:8px">Stores the embedding vector for each chunk. Used for cosine / semantic similarity search.</div>
               <div style="font-size:12px;font-family:monospace;color:var(--muted);line-height:1.9">
                 "self attention computes..."<br>
@@ -125,8 +125,8 @@
               </div>
             </div>
             <div style="background:#78350f22;border:1px solid #f59e0b44;border-radius:8px;padding:12px 14px">
-              <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px">Keyword Index (Inverted Index)</div>
-              <div style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:8px">Stores a term → chunk mapping. Lookup is direct — no vector comparison ever happens here.</div>
+              <div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:8px">Keyword Index (Sparse)</div>
+              <div style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:8px">Stores a term → chunk mapping (inverted index structure). Lookup is direct — no vector comparison ever happens here.</div>
               <div style="font-size:12px;font-family:monospace;color:var(--muted);line-height:1.9">
                 "attention" → [chunk 3, chunk 17, chunk 42]<br>
                 "transformer" → [chunk 1, chunk 42]<br>
@@ -215,7 +215,7 @@
         <div style="margin-left:10px">↓</div>
         <div style="margin-left:10px">Cleaning → Smart chunking → Metadata enrichment</div>
         <div style="margin-left:10px">↓</div>
-        <div style="margin-left:10px"><span style="color:#3b82f6">Vector DB</span> (semantic search) &nbsp;│&nbsp; <span style="color:var(--amber)">Keyword Index</span> (inverted index / BM25)</div>
+        <div style="margin-left:10px"><span style="color:#3b82f6">Vector Index (Dense)</span> (semantic search) &nbsp;│&nbsp; <span style="color:var(--amber)">Keyword Index (Sparse)</span> (inverted index / BM25)</div>
         <div style="margin-left:60px">↓</div>
         <div><span style="color:var(--blue);font-weight:700">QUERY TIME</span></div>
         <div style="margin-left:10px">User Query → Query Understanding (rewrite / HyDE / expand)</div>

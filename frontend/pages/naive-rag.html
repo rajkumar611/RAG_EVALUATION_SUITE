@@ -25,7 +25,7 @@
         <span style="color:var(--muted);font-size:13px">→</span>
         <div style="background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:7px 14px;font-size:13px;font-weight:600">Embed Chunks</div>
         <span style="color:var(--muted);font-size:13px">→</span>
-        <div style="background:var(--bg);border:1px solid var(--blue);color:var(--blue);border-radius:6px;padding:7px 14px;font-size:13px;font-weight:600">Vector DB only</div>
+        <div style="background:var(--bg);border:1px solid var(--blue);color:var(--blue);border-radius:6px;padding:7px 14px;font-size:13px;font-weight:600">Vector Index (Dense) only</div>
       </div>
 
       <!-- Query time phase -->
@@ -198,14 +198,14 @@
         <div style="margin-left:10px">↓</div>
         <div style="margin-left:10px">Basic chunking (fixed size, no overlap)</div>
         <div style="margin-left:10px">↓</div>
-        <div style="margin-left:10px">Embeddings → <span style="color:#3b82f6">Vector DB only</span></div>
+        <div style="margin-left:10px">Embeddings → <span style="color:#3b82f6">Vector Index (Dense) only</span></div>
         <div style="margin-left:60px">↓</div>
         <div><span style="color:var(--blue);font-weight:700">QUERY TIME</span></div>
         <div style="margin-left:10px">User Query (raw, no rewriting)</div>
         <div style="margin-left:10px">↓</div>
         <div style="margin-left:10px">Query embedding</div>
         <div style="margin-left:10px">↓</div>
-        <div style="margin-left:10px"><span style="color:#3b82f6">Vector similarity search</span></div>
+        <div style="margin-left:10px"><span style="color:#3b82f6">Dense (Vector) Search</span></div>
         <div style="margin-left:10px">↓</div>
         <div style="margin-left:10px">Top-K chunks → Direct LLM prompt</div>
         <div style="margin-left:10px">↓</div>
