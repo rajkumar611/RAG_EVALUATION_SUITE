@@ -88,8 +88,6 @@ Purpose-built pass / fail document pairs for each strategy. Each set includes a 
 | Hybrid RAG | `hybrid_rag_pass.txt` | `hybrid_rag_fail.txt` | Pass: exact error code + conceptual query (BM25 + vector both needed) |
 | Graph RAG | `graph_rag_pass.txt` | `graph_rag_fail.txt` | Also includes 4-document multi-hop scenario |
 
-General purpose documents (`doc1_ai_research_report.txt`, `doc2_product_operations_manual.txt`) work across all strategies.
-
 ---
 
 ## Quick Start
@@ -183,8 +181,6 @@ tests/test_rag_endpoints.py  # 59 integration tests: /upload, /rag/naive, /rag/a
 │   ├── graph_rag_doc2_tech_stack.txt
 │   ├── graph_rag_doc3_projects.txt
 │   ├── graph_rag_doc4_security.txt
-│   ├── doc1_ai_research_report.txt     # General purpose documents
-│   └── doc2_product_operations_manual.txt
 │
 └── tests/
     ├── conftest.py                     # Shared fixtures (client, sample_text, uploaded_client)
