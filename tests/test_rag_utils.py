@@ -225,8 +225,9 @@ class TestInjectionDetection:
 # ── llm error handling ────────────────────────────────────────────────────────
 class TestLlmErrorHandling:
     def test_api_error_raises_runtime_error(self):
+        from unittest.mock import MagicMock, patch
+
         import anthropic
-        from unittest.mock import patch, MagicMock
 
         from src.rag.routes import llm
 
@@ -238,17 +239,18 @@ class TestLlmErrorHandling:
             )
             try:
                 llm("test prompt")
-                assert False, "Should have raised"
+                pytest.fail("Should have raised")
             except RuntimeError as e:
                 assert "Anthropic API error" in str(e)
 
     def test_unexpected_error_raises_runtime_error(self):
         from unittest.mock import patch
+
         from src.rag.routes import llm
 
         with patch("src.rag.routes.client.messages.create", side_effect=ValueError("boom")):
             try:
                 llm("test prompt")
-                assert False, "Should have raised"
+                pytest.fail("Should have raised")
             except RuntimeError as e:
                 assert "LLM call failed" in str(e)
