@@ -714,7 +714,7 @@ def rag_evaluate(req: EvaluationRequest):
     Uses the real RAGAS library (ragas==0.4.x) with Claude as the judge LLM.
     """
     try:
-        from ragas import evaluate, EvaluationDataset
+        from ragas import EvaluationDataset, evaluate
         from ragas.dataset_schema import SingleTurnSample
         from ragas.metrics.collections import (
             AnswerCorrectness,
